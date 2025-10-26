@@ -1,3 +1,4 @@
+# Имя рабочего процесса
 name: Build Kivy APK
 
 # Когда запускать
@@ -20,6 +21,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Шаг 1.5: Удаление конфликтующих пакетов
+      - name: Remove conflicting packages
+        run: |
+          sudo apt-get remove --force-yes -y r-base-dev pkgconf
+
       # Шаг 2: Компиляция APK с помощью buildozer
       - name: Build APK with Buildozer
         uses: digreatbrian/buildozer-action@v2
@@ -37,4 +43,3 @@ jobs:
         with:
           name: utkachat-apk
           path: ./bin/*.apk
-
