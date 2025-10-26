@@ -1,36 +1,26 @@
-# Имя рабочего процесса
 name: Build Kivy APK
 
-# Когда запускать
 on:
-  # Запускать при каждом изменении в ветке main
   push:
     branches: [ "main" ]
-  # Позволяет запускать рабочий процесс вручную
   workflow_dispatch:
 
-# Задания
 jobs:
   build-apk:
-    # ОС, на которой будет выполняться
-    runs-on: ubuntu-latest
+    # Использовать более стабильную версию Ubuntu
+    runs-on: ubuntu-20.04
 
-    # Шаги выполнения
     steps:
-      # Шаг 1: Клонирование репозитория
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Шаг 2: Компиляция APK с помощью buildozer
       - name: Build APK with Buildozer
         uses: digreatbrian/buildozer-action@v2
         with:
-          # Версия Python
           python-version: 3.9
-          # Команда для buildozer
           buildozer-cmd: buildozer android debug
+          work-dir: .
 
-      # Шаг 3: Загрузка APK как артефакта
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
