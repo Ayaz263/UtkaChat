@@ -1,4 +1,3 @@
-# Имя рабочего процесса
 name: Build Kivy APK
 
 # Когда запускать
@@ -13,7 +12,7 @@ on:
 jobs:
   build-apk:
     # Использовать более стабильную версию Ubuntu
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     # Шаги выполнения
     steps:
@@ -38,3 +37,4 @@ jobs:
         with:
           name: utkachat-apk
           path: ./bin/*.apk
+
