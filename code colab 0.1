@@ -1,0 +1,87 @@
+# Устанавливаем Buildozer и необходимую версию Cython
+!pip install buildozer
+!pip install cython==0.29.26
+
+# Обновляем системные пакеты и устанавливаем инструменты
+!sudo apt-get update -y
+!sudo apt-get install -y \
+    build-essential \
+    git \
+    python3 \
+    python3-dev \
+    ffmpeg \
+    libsdl2-dev \
+    libsdl2-image-dev \
+    libsdl2-mixer-dev \
+    libsdl2-ttf-dev \
+    libportmidi-dev \
+    libswscale-dev \
+    libavformat-dev \
+    libavcodec-dev \
+    zlib1g-dev \
+    libgstreamer1.0-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    libsqlite3-dev \
+    bzip2 \
+    libbz2-dev \
+    libgdbm-dev \
+    libgdbm-compat-dev \
+    liblzma-dev \
+    libreadline-dev \
+    libncursesw5-dev \
+    libffi-dev \
+    uuid-dev \
+    libssl-dev \
+    libtool
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+!sudo apt-get update
+!sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+
+# Установка Python-зависимостей
+!pip3 install --upgrade Cython==0.29.33 buildozer
+
+!git clone https://github.com/Ayaz263/UtkaChat
+
+# 1. Создаем папку проекта
+!mkdir UtkaChat
+%cd UtkaChat/
+
+
+# 3. Создаем главный файл приложения
+%%writefile main.py
+# Здесь разместите код вашего Kivy-приложения, который вы предоставили ранее.
+# Код ниже - это пример. Вставьте свой код приложения.
+
+!cd UtkaChat/
+!buildozer android clean
+!buildozer -v android debug --continue
+
+%%writefile buildozer.spec
+[app]
+title = UtkaChat
+package.name = utkachat
+package.domain = org.test
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas
+version = 2.0
+requirements = python3,kivy
+orientation = portrait
+fullscreen = 0
+android.permissions = android.permission.INTERNET
+android.api = 33
+android.minapi = 21
+android.ndk_api = 33
+android.accept_sdk_license = True
+android.enable_androidx = True
+
+# Поиск и скачивание APK-файла
+import os
+import glob
+
+apk_file = glob.glob('bin/*.apk')[0]
+print(f"Found APK: {apk_file}")
+files.download(apk_file)
