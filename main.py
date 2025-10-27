@@ -13,7 +13,7 @@ class ChatClient(BoxLayout):
         super().__init__(**kwargs)
         self.orientation = 'vertical'
         self.messages = []
-        self.host = '127.0.0.1'  # IP-адрес сервера
+        self.host = '192.168.1.6'  # IP-адрес сервера
         self.port = 50000        # Порт сервера
 
         # Виджеты для отображения истории сообщений
