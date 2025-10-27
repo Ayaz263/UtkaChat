@@ -1,0 +1,52 @@
+[app]
+
+# (str) Title of your application
+title = UtkaChat
+
+# (str) Package name
+package.name = utkachat
+
+# (str) Package domain (needed for android/ios packaging)
+package.domain = org.test
+
+# (str) Source code where the main.py live
+source.dir = .
+
+# (list) Source files to include (let empty to include all the files)
+source.include_exts = py,png,jpg,kv,atlas
+
+# (str) Application versioning (method 1)
+version = 2.0
+
+# (list) Application requirements
+requirements = python3,kivy
+
+# (list) Supported orientations
+orientation = portrait
+
+#
+# Android specific
+#
+
+# (bool) Indicate if the application should be fullscreen or not
+fullscreen = 0
+
+# (list) Permissions
+android.permissions = android.permission.INTERNET
+
+# (int) Target Android API, should be as high as possible.
+android.api = 33
+
+# (int) Minimum API your APK / AAB will support.
+android.minapi = 21
+
+# (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
+android.ndk_api = 33
+
+# (bool) If True, then automatically accept SDK license
+# agreements. This is intended for automation only.
+android.accept_sdk_license = True
+
+# (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
+# contains an 'androidx' package, or any package from Kotlin source.
+android.enable_androidx = True
