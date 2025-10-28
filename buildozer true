@@ -1,5 +1,6 @@
 [app]
 title = UtkaChat
+p4a.branch = develop
 icon.filename = logo.png
 package.name = utkachat
 package.domain = org.test
